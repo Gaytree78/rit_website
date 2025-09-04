@@ -8,10 +8,11 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
-                // Explicitly checkout Git repo
-                git branch: 'main', url: 'https://github.com/Gaytree78/rit_website.git'
-            }
+    steps {
+        git branch: 'master', url: 'https://github.com/Gaytree78/rit_website.git'
+    }
+}
+
         }
 
         stage('Build') {
