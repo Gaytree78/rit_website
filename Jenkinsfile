@@ -1,49 +1,26 @@
 pipeline {
     agent any
 
-    // Optional: remove or configure triggers
-    // triggers {
-    //     cron('H 2 * * *') // Uncomment to run daily at 2 AM
-    // }
-
     stages {
-        stage('Checkout') {
-    steps {
-        git branch: 'master', url: 'https://github.com/Gaytree78/rit_website.git'
-    }
-}
-
-        }
-
         stage('Build') {
             steps {
-                echo 'Building the project...'
-                // Add your build commands here, e.g., npm install, mvn package, etc.
-            }
-        }
+                echo 'Building...'
+            } // end steps
+        } // end stage
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
-                // Add your test commands here
-            }
-        }
-
-        stage('Archive') {
-            steps {
-                echo 'Archiving artifacts...'
-                // Example: archive artifacts if needed
-                // archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-            }
-        }
-    }
+                echo 'Testing...'
+            } // end steps
+        } // end stage
+    } // end stages
 
     post {
         success {
-            echo 'Pipeline completed successfully!'
+            echo 'Pipeline succeeded!'
         }
         failure {
             echo 'Pipeline failed!'
         }
-    }
-}
+    } // end post
+} // end pipeline
