@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>College Admission Cell</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      max-width: 500px;
+      width: 100%;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #34495e;
+    }
+
+    input, select, textarea {
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1.8px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #2980b9;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    button {
+      background: #2980b9;
+      color: white;
+      font-weight: 600;
+      border: none;
+      padding: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #1c5980;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      color: #27ae60;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>College Admission Form</h1>
+    <form id="admissionForm">
+      <label for="fullName">Full Name *</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
+
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" pattern="^\+?[0-9\s\-]{7,15}$" required />
+
+      <label for="course">Select Course *</label>
+      <select id="course" name="course" required>
+        <option value="" disabled selected>Select your course</option>
+        <option value="computer_science">Computer Science & Engineering</option>
+        <option value="entc">Electronics & Telecommunication</option>
+        <option value="electrical">Electrical Engineering</option>
+        <option value="mechanical">Mechanical Engineering</option>
+        <option value="civil">Civil Engineering</option>
+      </select>
+
+      <label for="address">Address</label>
+      <textarea id="address" name="address" placeholder="Your address (optional)"></textarea>
+
+      <button type="submit">Submit Application</button>
+    </form>
+
+    <p class="success-message" id="successMessage">Thank you! Your application has been submitted.</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('admissionForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Simple client-side validation is already handled by 'required' and pattern attributes.
+
+      // If all fields valid, show success message
+      successMessage.style.display = 'block';
+
+      // Optionally, clear the form
+      form.reset();
+
+      // Hide the message after 5 seconds
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>
