@@ -1,0 +1,96 @@
+✅ 1. Create a local folder
+mkdir C-Programs-Library
+cd C-Programs-Library
+
+✅ 2. Initialize Git repository
+git init
+
+✅ 3. Create at least 5 C programs
+Bubble Sort
+nano bubble_sort.c
+
+
+Paste your code → Save → Exit.
+
+Linear Search
+nano linear_search.c
+
+Factorial (Recursion)
+nano factorial_recursion.c
+
+File I/O Example
+nano file_io_example.c
+
+Matrix Multiplication
+nano matrix_multiplication.c
+
+✅ 4. Create README.md
+nano README.md
+
+
+Add content like:
+
+# C-Programs-Library
+**Name:** Your Name  
+**Roll No.:** Your Roll No.
+
+## List of Programs
+1. bubble_sort.c - Implements bubble sort algorithm  
+2. linear_search.c - Finds an element using linear search  
+3. factorial_recursion.c - Calculates factorial using recursion  
+4. file_io_example.c - Demonstrates file read/write operations  
+5. matrix_multiplication.c - Multiplies two matrices  
+
+## How to Compile and Run
+gcc program_name.c -o program_name  
+./program_name
+
+
+Save and exit.
+
+✅ 5. Track and commit files
+Add all files:
+git add .
+
+Commit:
+git commit -m "Added initial 5 C programs and README"
+
+✅ 6. Create a remote GitHub repository
+
+Go to GitHub → New Repository → name it:
+
+C-Programs-Library
+
+
+Do NOT initialize with README (you already have one locally).
+
+✅ 7. Link local repo to GitHub remote
+
+Replace <your-username> with your GitHub username:
+
+git remote add origin https://github.com/<your-username>/C-Programs-Library.git
+
+
+Verify:
+
+git remote -v
+
+✅ 8. Push all files to GitHub
+git branch -M main
+git push -u origin main
+
+✅ 9. Add one more program later
+
+Example: Prime Number program.
+
+nano prime_number.c
+
+
+Add code, save.
+
+Add & commit:
+git add prime_number.c
+git commit -m "Added prime number program"
+
+Push update:
+git push
