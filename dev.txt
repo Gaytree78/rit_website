@@ -94,3 +94,427 @@ git commit -m "Added prime number program"
 
 Push update:
 git push
+
+
+
+
+PART A — Create a Two-Page Portfolio Website (HTML + CSS)
+1. Create project folder
+mkdir portfolio-website
+cd portfolio-website
+
+2. Create index.html
+nano index.html
+
+
+Sample code:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Welcome to My Portfolio</h1>
+    <p>This is my home page.</p>
+    <a href="about.html">About Me</a>
+</body>
+</html>
+
+3. Create about.html
+nano about.html
+
+4. Create style.css
+nano style.css
+
+
+Sample CSS:
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f5f5f5;
+}
+h1{
+    color: #333;
+}
+
+✅ PART B — Initialize Git & Push to GitHub
+1. Initialize Git
+git init
+
+2. Add files
+git add .
+
+3. Commit code
+git commit -m "Initial portfolio website"
+
+4. Create GitHub Repository
+
+Go to GitHub → New Repository → name: portfolio-website
+
+5. Link remote & push
+git remote add origin https://github.com/<your-username>/portfolio-website.git
+git branch -M main
+git push -u origin main
+
+✅ PART C — Create Jenkins Pipeline for Auto Deployment
+Prerequisites
+
+✔ Jenkins installed
+✔ Git plugin installed
+✔ Pipeline plugin installed
+✔ A deployment server (could be same machine)
+
+1. Create a Jenkinsfile in your project
+
+Inside your project folder:
+
+nano Jenkinsfile
+
+
+Add the following simple deployment pipeline:
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Code') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/<your-username>/portfolio-website.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Nothing to build. HTML/CSS only."
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Deploying website..."
+                sh 'cp -r * /var/www/html/'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Deployment completed successfully!"
+        }
+    }
+}
+
+Notes:
+
+/var/www/html/ is for Apache web server
+
+Use correct folder if Nginx or custom server
+
+2. Create Pipeline in Jenkins
+Steps:
+
+Open Jenkins Dashboard
+
+Click New Item
+
+Enter name: portfolio-deployment
+
+Select Pipeline
+
+Scroll down → Pipeline → choose
+"Pipeline script from SCM"
+
+Select Git
+
+Add Repository URL:
+
+https://github.com/<your-username>/portfolio-website.git
+
+
+Branch: main
+
+Script path: Jenkinsfile
+
+Save
+
+✅ PART D — Configure GitHub Webhook (Auto Trigger)
+1. Go to your GitHub repo
+
+Settings → Webhooks → Add Webhook
+
+2. Enter Jenkins webhook URL format:
+http://<jenkins-server-ip>:8080/github-webhook/
+
+3. Content type:
+application/json
+
+4. Select "Just the push event"
+5. Click Add Webhook
+🚀 How Your Pipeline Works Now
+
+Whenever you:
+
+✔ Edit HTML/CSS
+✔ git add .
+✔ git commit -m "update UI"
+✔ git push
+
+GitHub → triggers webhook → Jenkins Pipeline runs → automatically deploys to /var/www/html/.
+
+🎉 Deployment Completed Successfully!
+
+If you want:
+📌 I can generate a more advanced portfolio design
+📌 Provide a Jenkins freestyle job alternative
+📌 Help you configure Apache or Nginx server
+📌 Give a diagram of the CI/CD pipeline
+
+
+
+
+Travel Agency Website Using Docker Automation — Full Steps & Commands
+1️⃣ Create a Two-Page Travel Agency Website (HTML + CSS)
+📁 Folder Structure
+travel-agency/
+│── index.html
+│── about.html
+│── styles.css
+│── Dockerfile
+
+📄 index.html (Sample)
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Agency</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Welcome to ExploreWorld Travels</h1>
+    <a href="about.html">About Us</a>
+</body>
+</html>
+
+📄 about.html (Sample)
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>About ExploreWorld Travels</h1>
+    <a href="index.html">Home</a>
+</body>
+</html>
+
+📄 styles.css
+body {
+    font-family: Arial;
+    background: lightblue;
+    text-align: center;
+    padding: 40px;
+}
+
+2️⃣ Push the Project Repository to GitHub
+🔹 Initialize Git & Commit Code
+cd travel-agency
+git init
+git add .
+git commit -m "Initial commit - Travel Agency Website"
+
+🔹 Add GitHub Remote
+git remote add origin https://github.com/<your-username>/travel-agency.git
+
+🔹 Push Code
+git branch -M main
+git push -u origin main
+
+3️⃣ Build Docker Image Using Dockerfile
+📄 Create Dockerfile
+# Use NGINX as webserver
+FROM nginx:latest
+
+# Copy website files to NGINX web root
+COPY . /usr/share/nginx/html
+
+🔹 Build Docker Image
+docker build -t travel-agency:v1 .
+
+4️⃣ Run Docker Container & Verify Website
+🔹 Run Container
+docker run -d -p 8080:80 --name travel-web travel-agency:v1
+
+
+This maps:
+
+Container port 80 → Host port 8080
+
+🔹 Check Running Containers
+docker ps
+
+🌐 Verify Website in Browser
+
+Open:
+
+http://localhost:8080
+
+
+Your travel agency website should be visible! 🎉
+
+✅ Output of the Project
+
+You have successfully:
+
+✔ Created a 2-page travel agency website
+✔ Pushed it to GitHub
+✔ Built a Docker image using a Dockerfile
+✔ Ran a container and accessed the website
+
+If you want, I can also help you make:
+
+✅ A Docker Compose file
+✅ A Jenkins pipeline to auto-build Docker images
+✅ A CI/CD workflow using GitHub Actions
+
+
+Blog Website Using Maven — Full Steps & Commands
+
+This project uses:
+
+Java (Servlets/JSP) for backend
+
+HTML/CSS for UI
+
+Maven for build automation
+
+Git & GitHub for version control
+
+1️⃣ Create a Two-Page Blog Web Application (HTML + CSS + Java)
+✔ Folder Structure (Maven Standard)
+blog-website/
+ ├── src/
+ │   ├── main/
+ │   │   ├── java/
+ │   │   │   └── com/blog/AppServlet.java
+ │   │   ├── webapp/
+ │   │   │   ├── index.jsp
+ │   │   │   ├── blog.jsp
+ │   │   │   └── styles.css
+ ├── pom.xml
+
+✔ Sample index.jsp
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Welcome to My Blog</h1>
+<a href="blog.jsp">Go to Blog</a>
+</body>
+</html>
+
+✔ Sample blog.jsp
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Page</title>
+</head>
+<body>
+<h1>Latest Blog Post</h1>
+<p>This is a sample blog article.</p>
+<a href="index.jsp">Back to Home</a>
+</body>
+</html>
+
+✔ Sample Servlet — AppServlet.java
+package com.blog;
+
+import java.io.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+
+public class AppServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        res.getWriter().println("Servlet Running Successfully!");
+    }
+}
+
+2️⃣ Push the Code to GitHub
+🔹 Initialize Git
+cd blog-website
+git init
+git add .
+git commit -m "Initial Blog Website Commit"
+
+🔹 Add Remote
+git remote add origin https://github.com/<your-username>/blog-website.git
+
+🔹 Push Code
+git branch -M main
+git push -u origin main
+
+3️⃣ Configure Maven for Build Automation
+✔ Sample pom.xml (minimal working Maven web project)
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.blog</groupId>
+    <artifactId>blog-website</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>blog-website</finalName>
+    </build>
+
+</project>
+
+4️⃣ Execute Maven Commands to Generate Build Files
+🔹 Clean previous build files
+mvn clean
+
+🔹 Compile Source Code
+mvn compile
+
+🔹 Package Application as a WAR file
+mvn package
+
+📦 Output will be generated here:
+blog-website/target/blog-website.war
+
+
+This WAR file can be deployed in Apache Tomcat / Jetty / any servlet container.
+
+✅ Final Output Achieved
+
+✔ Blog website created
+✔ HTML, CSS, JSP & Java servlet used
+✔ Project pushed to GitHub
+✔ Maven configured (pom.xml)
+✔ Maven build commands run
+✔ Deployable WAR file generated
+
+If you want, I can also help you with:
+
+✅ Jenkins CI/CD for Maven
+✅ Deployment on Tomcat server
+✅ Adding CRUD blog posts with JDBC/MySQL
+Just tell me!
